@@ -6,3 +6,5 @@ langgraph
 black
 isort
 ipykernel
+mssql-python
+python-dotenv

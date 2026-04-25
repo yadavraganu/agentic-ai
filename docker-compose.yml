@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql_srver_container
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "SuperStrongSA!Pass" # Admin password
+      MSSQL_DB: "MainDB"                    # Database name
+      MSSQL_USER: "USER1"                # Custom Username
+      MSSQL_PASSWORD: "USER1!Pass123"      # Custom User Password
+    ports:
+      - "1433:1433"

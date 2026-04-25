@@ -1,6 +1,8 @@
-from langchain_core.messages import HumanMessage,AIMessage ,ToolMessage
+from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
+
+
 def response_printer(response):
-    print("#"*100)
+    print("#" * 100)
     for message in response["messages"]:
         if isinstance(message, AIMessage):
             print(f"AI: {message.content}")
@@ -8,4 +10,4 @@ def response_printer(response):
             print(f"Human: {message.content}")
         elif isinstance(message, ToolMessage):
             print(f"Tool: {message.content}")
-    print("#"*100)
+    print("#" * 100)
