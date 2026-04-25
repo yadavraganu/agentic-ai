@@ -1,4 +1,6 @@
 .vscode
 *.db*
-__pycache__
+.\_\_*
 .ipynb_checkpoints
+.venv
+*pycache*
