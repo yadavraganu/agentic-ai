@@ -8,3 +8,4 @@ isort
 ipykernel
 mssql-python
 python-dotenv
+black[jupyter]
