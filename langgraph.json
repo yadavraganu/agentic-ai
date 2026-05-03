@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "agent": "./projects/sql_writing_agent.py:sql_assistant"
+  },
+  "env": ".env"
+}

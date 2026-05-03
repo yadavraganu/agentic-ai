@@ -4,3 +4,6 @@
 .ipynb_checkpoints
 .venv
 *pycache*
+.langgraph*
+*.log
+.env
