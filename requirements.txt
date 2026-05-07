@@ -9,3 +9,5 @@ ipykernel
 mssql-python
 python-dotenv
 black[jupyter]
+langchain-text-splitters
+tiktoken
