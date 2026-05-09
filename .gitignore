@@ -7,3 +7,4 @@
 .langgraph*
 *.log
 .env
+*pdf

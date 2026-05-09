@@ -11,3 +11,6 @@ python-dotenv
 black[jupyter]
 langchain-text-splitters
 tiktoken
+langchain_community
+pypdf
+*pdf
