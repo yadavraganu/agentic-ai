@@ -14,3 +14,25 @@ Even though ANN is the default, modern vector databases still include a pure KNN
 * Small Datasets: If you are storing fewer than 10,000 to 50,000 vectors, a brute-force KNN scan is fast enough and guarantees 100% perfect accuracy.
 * Hard Pre-Filtering: If your metadata query restricts the search to only a handful of documents (e.g., searching only documents owned by "User_XYZ"), the database will often run a fast KNN scan on just that tiny subset.
 * Ground Truth Benchmarking: Developers run KNN on a sample dataset to get a perfect baseline result, allowing them to measure exactly how accurate their ANN algorithms are performing.
+
+## Algos Used By Vector Databases
+### Hierarchical Navigable Small World (HNSW)
+Hierarchical Navigable Small World (HNSW) is a state-of-the-art graph-based indexing algorithm used for Approximate Nearest Neighbor (ANN) search in high-dimensional spaces. It is the default indexing engine in most modern vector databases—such as Milvus, Pinecone, and Qdrant—powering semantic search, recommendation engines, and AI retrieval systems.
+#### How HNSW Works 
+Instead of calculating distances against every single vector in a database (which is too slow for large datasets), HNSW creates a multi-layer, connected graph: 
+- Proximity Graphs (Navigable Small Worlds): Data points (vectors) are organized into a graph where edges connect to nearby points. This allows the search to quickly hop through the graph from neighbor to neighbor. 
+- Hierarchy (Skip-List Style): The structure is built in layers. The top layer is sparse, containing only a few nodes. The lower layers become progressively denser, with the bottom layer containing all data points. 
+- Greedy Navigation: A search begins at a random entry point in the sparse top layer and moves toward the neighbor that is closest to the query vector. Once it hits a point where no neighboring node is closer, it drops down to the next layer and repeats the process. This funnels the search directly into the correct cluster, minimizing distance computations.
+
+#### Key Parameters 
+HNSW is highly tunable, allowing you to balance index build time, search speed, and memory usage. The most critical parameters you can adjust include: 
+- M (Max Connections): Controls the maximum number of bidirectional links a node can create in the graph. A higher  improves recall and makes the graph more connected, but increases memory usage and insertion time. 
+- efConstruction: The number of closest neighbors to consider during the index-build phase. Higher values result in better-connected graphs and higher accuracy, but slow down index creation. 
+- efSearch: The number of closest neighbors to evaluate during the query phase. Higher numbers yield better recall and more accurate search results, but increase latency.
+
+#### Why HNSW is Popular 
+
+- Sub-linear Scaling: Reduces search complexity from linear time $O(N)$ to logarithmic time $O(\log N)$. 
+- High Recall: Consistently delivers 90–99% accuracy in finding true nearest neighbors while sacrificing a tiny fraction of perfection for massive speed boosts. 
+- Scalability: Handles datasets with tens or hundreds of millions of vectors seamlessly.
+
