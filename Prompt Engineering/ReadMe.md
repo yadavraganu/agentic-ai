@@ -68,3 +68,27 @@ While powerful, CoT isn't always necessary and can sometimes be counterproductiv
 *   **High-Volume, Low-Latency Tasks:** CoT significantly increases the number of tokens generated, which makes responses slower and more expensive in an API environment.
 *   **Basic Classification:** If you are just tagging an email as "Spam" or "Not Spam," the model doesn't need to explain the history of the internet to get it right.
 *   **When the Model is Too Small:** Smaller, "lighter" models often struggle with CoT; they might hallucinate a logical path that sounds right but leads to a wrong conclusion.
+
+## What is Meta Prompting?
+
+**Meta Prompting** is a technique where you use an AI to design, manage, optimize, or select other prompts. Instead of acting as the end-user writing a prompt for a task, you act as an orchestrator, instructing a "meta-model" to build a structured framework or system prompt that another AI (or a separate agentic loop) will execute.
+It essentially treats prompt engineering as a scalable software architecture problem, using the AI's understanding of language to optimize its own instructions.
+
+### When to Use It
+
+Meta Prompting shines when you are scaling up complex AI workflows or building production-ready features. Use it for:
+
+* **Building Agentic Frameworks:** Designing robust system prompts for independent AI agents that need to handle complex, open-ended workflows.
+* **Dynamic Prompt Generation:** Creating applications where the prompt needs to adapt on the fly based on variable user inputs or real-time data.
+* **Prompt Optimization:** Passing a basic, underperforming prompt to a meta-model with instructions like, *"Rewrite this prompt to minimize hallucination and enforce JSON output."*
+* **Routing Architectures:** Creating a "master router" prompt that analyzes an incoming query and dynamically decides which specialized sub-prompt or tool to use next.
+* **Standardizing Team Workflows:** Generating reusable, enterprise-grade prompt templates that ensure consistent outputs across a large engineering team.
+
+### When to Avoid It
+
+Because Meta Prompting introduces another layer of abstraction, it is often overkill for simpler tasks. Avoid it when:
+
+* **One-Off Tasks or Ad-Hoc Queries:** If you just need a quick script, a code fix, or a summary, writing a prompt *about* a prompt takes vastly more time than just asking the question directly.
+* **Strictly Deterministic Rules Apply:** If a task can be solved using traditional code logic (like an `if/else` statement or a basic regex pattern), using a meta-prompt to handle the routing adds unnecessary risk and cost.
+* **Low-Latency Applications:** Meta prompting usually implies multiple turns or a two-step generation process (generating the prompt, then executing it), which significantly increases response times.
+* **Budget-Constrained Systems:** Running a complex meta-prompting layer consumes significantly more tokens, drastically raising API costs if used for simple, high-volume tasks.
